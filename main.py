@@ -39,17 +39,18 @@ class Deque:
             self.rear = new_node
         self.dequeSize = self.dequeSize + 1
 
-    def delete_front(self):
-        prev_deq_size = self.dequeSize
+    def pop_front(self):
+        prev_front = self.front.data
         if self.dequeSize == 0:
             raise Exception("Deque is Empty")
         else:
             self.front = self.front.next
             self.front.prev = None
         self.dequeSize -= 1
-        return prev_deq_size, self.dequeSize, self.front.data
+        return prev_front
 
-    def delete_rear(self):
+    def pop_rear(self):
+        prev_rear = self.rear.data
         prev_deq_size = self.dequeSize
         if self.dequeSize == 0:
             raise Exception("Deque is Empty")
@@ -59,13 +60,13 @@ class Deque:
         self.dequeSize -= 1
         return prev_deq_size, self.dequeSize, self.rear.data
 
-    def get_front(self):
+    def pick_front(self):
         if self.dequeSize == 0:
             raise Exception("Deque is Empty")
         else:
             return self.front.data
 
-    def get_rear(self):
+    def pick_rear(self):
         if self.dequeSize == 0:
             raise Exception("Deque is Empty")
         else:
