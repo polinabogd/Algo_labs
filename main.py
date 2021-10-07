@@ -51,14 +51,13 @@ class Deque:
 
     def pop_rear(self):
         prev_rear = self.rear.data
-        prev_deq_size = self.dequeSize
         if self.dequeSize == 0:
             raise Exception("Deque is Empty")
         else:
             self.rear = self.rear.prev
             self.rear.next = None
         self.dequeSize -= 1
-        return prev_deq_size, self.dequeSize, self.rear.data
+        return prev_rear
 
     def pick_front(self):
         if self.dequeSize == 0:
