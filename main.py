@@ -1,3 +1,10 @@
+def write_to_file(list_of_prices, discount_num):
+    file = open("file.txt", 'w')
+    for el in list_of_prices:
+        file.write(str(el) + " ")
+    file.write("\n" + str(discount_num))
+
+
 def open_and_read_file(url):
     price_data = []
     with open(url) as file:
@@ -20,8 +27,9 @@ def counting_discount():
     discount_pers = (input_data_prices.pop(-1) / 100)
     sorted_prices_list = sorting_prices(input_data_prices, discount_pers)
     final_sum = sum(sorted_prices_list)
-    return final_sum
+    return round(final_sum, 2)
 
 
 if __name__ == '__main__':
+    write_to_file([1, 2, 3, 4, 5, 6, 7], 100)
     print(counting_discount())
