@@ -12,19 +12,14 @@ class Graph():
 
     def dfs(self, u, color):
         color[u] = "GRAY"
-        cycle = []
 
         for v in self.graph[u]:
             if color[v] == "GRAY":
-                cycle.append(v)
-                for k in cycle:
-                    print(k, "<-", end=" ")
+                print(v, "<-", end=" ")
                 return True
 
             if color[v] == "WHITE" and self.dfs(v, color) == True:
-                cycle.append(v)
-                for k in cycle:
-                    print(k, "<-", end=" ")
+                print(v, "<-", end=" ")
                 return True
 
         color[u] = "BLACK"
