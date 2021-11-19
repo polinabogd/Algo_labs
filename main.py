@@ -2,8 +2,8 @@ from collections import defaultdict
 
 
 class Graph():
-    def __init__(self, V):
-        self.V = V
+    def __init__(self, vertexes):
+        self.vertexes = vertexes
         self.graph = defaultdict(list)
 
     def add_edge(self, edges):
@@ -12,25 +12,28 @@ class Graph():
 
     def dfs(self, u, color):
         color[u] = "GRAY"
+        cycle = []
 
         for v in self.graph[u]:
-
             if color[v] == "GRAY":
-                for k in self.graph.keys():
-                    if color[k] == "GRAY":
-                        print(k, "->", end=" ")
+                cycle.append(v)
+                for k in cycle:
+                    print(k, "<-", end=" ")
                 return True
 
             if color[v] == "WHITE" and self.dfs(v, color) == True:
+                cycle.append(v)
+                for k in cycle:
+                    print(k, "<-", end=" ")
                 return True
 
         color[u] = "BLACK"
         return False
 
     def is_cyclic(self):
-        color = ["WHITE"] * self.V
+        color = ["WHITE"] * self.vertexes
 
-        for i in range(self.V):
+        for i in range(self.vertexes):
             if color[i] == "WHITE":
                 if self.dfs(i, color):
                     return True
@@ -48,4 +51,4 @@ if __name__ == '__main__':
             edges.append(edge)
             g.add_edge(edges)
 
-    print(" Graph contains cycle" if g.is_cyclic() == True else "Graph doesn't contain cycle")
+    print("Cycle starts here" if g.is_cyclic() == True else "Graph doesn't contain cycle")
