@@ -15,7 +15,7 @@ class Graph:
         return self.find_parent(self.parent[node])
 
     def kruskal(self):
-        lalala = sorted(self.edge_list)
+        sorted_edge_list= sorted(self.edge_list)
         self.parent = [None] * self.key
         self.rank = [None] * self.key
 
@@ -23,7 +23,7 @@ class Graph:
             self.parent[node] = node
             self.rank[node] = 0
 
-        for edge in lalala:
+        for edge in sorted_edge_list:
             root1 = self.find_parent(edge[0])
             root2 = self.find_parent(edge[1])
             if root1 != root2:
